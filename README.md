@@ -1,0 +1,7 @@
+- B_M_functions.R: functions to replicate and to use cluster-specific coefficients theta.
+- B_M_functions_timevar.R: These include the time-varying clustering. You can ignore it for now.
+- DBM_figures.R: Produce figures out of the outputs.
+- BM_data.csv: Extraction of the original data that includes only the countries in their sample and adds lagged values of the variables already.
+- DBM_read_data.R: reads the data, applies the estimation, and saves the results.
+
+DBM_read_data.R originally worked on the xls file that comes from Acemoglu. I saved the data frame that it creates and left the “write.csv” command commented out so you can see at which stage this happens. It iterates over a few values of G and the number of partitions (which you can ignore), and applies the time-varying algorithm. Instead of the fBM_ALg1_timevar call, you should look at fBM_ALg1 and fBM_ALg1_clustered_coefs in B_M_functions.R. The first one is the exact model in Bonhomme and Manresa and the second is the version of cluster-specific thetas. Both of these functions take the data and construct a formula in sOLS_formula that they pass to R’s lm function which just does the OLS. You can then look at the resulting model to see the exact matrix that is being used as the X.
